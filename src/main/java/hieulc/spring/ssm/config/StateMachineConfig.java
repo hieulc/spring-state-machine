@@ -26,7 +26,6 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<Paymen
             throws Exception {
         config
                 .withConfiguration()
-                .autoStartup(true)
                 .listener(listener());
     }
 
@@ -57,7 +56,7 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<Paymen
         return new StateMachineListenerAdapter<PaymentState, PaymentEvent>() {
             @Override
             public void stateChanged(State<PaymentState, PaymentEvent> from, State<PaymentState, PaymentEvent> to) {
-                System.out.println("State change to " + to.getId());
+                log.info(String.format("State change to: " + to.getId()));
             }
         };
     }
